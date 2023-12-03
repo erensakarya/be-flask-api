@@ -1,0 +1,72 @@
+version: '3.8'
+
+services:
+  flaskapp:
+    container_name: flaskapp
+    image: flask:v1
+    networks:
+      - mongo-cluster-network
+    expose:
+      - 5000
+    ports:
+      - "3000:5000"
+    restart: always
+  mongo1:
+    container_name: mongo1
+    image: mongo:7.0.3
+    volumes:
+      - ~/mongors/data1:/data/db
+      - ./rs-init.sh:/scripts/rs-init.sh
+    networks:
+      - mongo-cluster-network
+    expose:
+      - 27017
+    ports:
+      - "30001:27017"
+    links:
+      - mongo2
+      - mongo3
+    restart: always
+    entrypoint: ["/usr/bin/mongod", "--bind_ip_all", "--replSet", "dbrs"]
+  mongo2:
+    container_name: mongo2
+    image: mongo:7.0.3
+    volumes:
+      - ~/mongors/data2:/data/db
+    expose:
+      - 27017
+    networks:
+      - mongo-cluster-network
+    ports:
+      - "30002:27017"
+    restart: always
+    entrypoint: ["/usr/bin/mongod", "--bind_ip_all", "--replSet", "dbrs"]
+  mongo3:
+    container_name: mongo3
+    image: mongo:7.0.3
+    volumes:
+      - ~/mongors/data3:/data/db
+    expose:
+      - 27017
+    networks:
+      - mongo-cluster-network
+    ports:
+      - "30003:27017"
+    restart: always
+    entrypoint: ["/usr/bin/mongod", "--bind_ip_all", "--replSet", "dbrs"]
+  mongo-express:
+    container_name: mongo-express
+    image: mongo-express:1.0.0
+    networks:
+      - mongo-cluster-network
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongo1
+      - ME_CONFIG_MONGODB_SERVER=mongo2
+      - ME_CONFIG_MONGODB_SERVER=mongo3
+    ports:
+      - '8081:8081'
+    restart: always
+
+networks:
+  mongo-cluster-network:
+    driver: bridge
