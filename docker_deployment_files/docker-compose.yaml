@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  mongodb:
+    container_name: mongo
+    image: mongo:7.0.3
+    networks:
+      - mongo-single-network
+    ports:
+      - '27017:27017'
+    volumes:
+      - dbdata:/data/db
+  mongo-express:
+    container_name: mongo-express
+    image: mongo-express:1.0.0
+    networks:
+      - mongo-single-network
+    ports:
+      - '8081:8081'
+
+volumes:
+  dbdata:
+
+networks:
+  mongo-single-network:
+    driver: bridge
