@@ -1,0 +1,11 @@
+id,base_url,namespace,endpoint,parameters,example
+1,http://127.0.0.1:5000,python_list,order,order_name,curl -X 'GET' 'http://127.0.0.1:5000/python_list/order?order_name=test' -H 'accept: application/json'
+2,http://127.0.0.1:5000,mongodb,order,order_name,curl -X 'GET' 'http://127.0.0.1:5000/mongodb/order?order_name=test' -H 'accept: application/json'
+3,http://127.0.0.1:5000,python_list,orders,None,curl -X 'GET' 'http://127.0.0.1:5000/python_list/orders' -H 'accept: application/json'
+4,http://127.0.0.1:5000,mongodb,orders,None,curl -X 'GET' 'http://127.0.0.1:5000/mongodb/orders' -H 'accept: application/json'
+5,http://127.0.0.1:5000,python_list,add_order,order_name,curl -X 'POST' 'http://127.0.0.1:5000/python_list/add_order?order_name=test' -H 'accept: application/json' -d ''
+6,http://127.0.0.1:5000,mongodb,add_order,order_name,curl -X 'POST' 'http://127.0.0.1:5000/mongodb/add_order?order_name=test' -H 'accept: application/json' -d ''
+7,http://127.0.0.1:5000,python_list,delete_order,order_name,curl -X 'DELETE' 'http://127.0.0.1:5000/python_list/delete_order?order_name=test' -H 'accept: application/json'
+8,http://127.0.0.1:5000,mongodb,delete_order,order_name,curl -X 'DELETE' 'http://127.0.0.1:5000/mongodb/delete_order?order_name=test' -H 'accept: application/json'
+9,http://127.0.0.1:5000,python_list,update_order,order_name-order_name_new,curl -X 'PUT' 'http://127.0.0.1:5000/python_list/update_order?order_name=test&order_name_new=test2' -H 'accept: application/json'
+10,http://127.0.0.1:5000,mongodb,update_order,order_name-order_name_new,curl -X 'PUT' 'http://127.0.0.1:5000/mongodb/update_order?order_name=test&order_name_new=test2' -H 'accept: application/json'
