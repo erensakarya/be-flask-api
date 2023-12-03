@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flask Restx API Example</title>
+</head>
+<body>
+    <nav>
+        <a href="/tutorial/">Tutorial</a>
+        <a href="/contact-us/">Contact Us</a>
+        <a href="/doc/">swagger-ui</a>
+    </nav>
+    <h1>Flask Restx API</h1>
+    <img src="{{url_for('static', filename='img.png')}}", width="500 px">
+    <p>URL format: http://host:port/namespace?parameters...</p>
+    <nav>
+        <a href="http://127.0.0.1:5000/python_list/order?order_name=test" target="_blank">URL example: http://127.0.0.1:5000/python_list/order?order_name=test</a>
+        <br>
+        <a href="http://127.0.0.1:5000/mongodb/order?order_name=test" target="_blank">URL example 2: http://127.0.0.1:5000/mongodb/order?order_name=test</a>
+    </nav>
+    <p>{{data|safe}}</p>
+</body>
+</html>
