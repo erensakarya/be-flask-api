@@ -4,7 +4,7 @@ from flask import Flask, jsonify, request
 from flask_restx import Api
 from apis import mongodb_ns, python_list_ns
 from services import init_services
-from home import home_blueprint
+from home_page import home_page_blueprint
 
 
 def load_environment():
@@ -22,7 +22,7 @@ def create_app(mode):
     load_environment()
     app = Flask(__name__)
 
-    app.register_blueprint(home_blueprint)
+    app.register_blueprint(home_page_blueprint)
 
     api = Api(app, doc='/doc/')
 
